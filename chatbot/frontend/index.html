@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çok Dilli Adaptif RAG Chatbot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 900px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-header {
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: calc(100vh - 250px);
+        }
+        .chat-input-container {
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+            margin-top: auto;
+        }
+        .message {
+            padding: 12px 15px;
+            border-radius: 15px;
+            max-width: 80%;
+            position: relative;
+        }
+        .user-message {
+            background-color: #007bff;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        .bot-message {
+            background-color: #f1f1f1;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        .message-time {
+            font-size: 0.7rem;
+            color: rgba(0, 0, 0, 0.5);
+            margin-top: 5px;
+            text-align: right;
+        }
+        .user-message .message-time {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .language-badge {
+            font-size: 0.7rem;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+        .loading {
+            display: none;
+            align-self: center;
+            margin: 10px 0;
+        }
+        .spinner-border {
+            width: 2rem;
+            height: 2rem;
+        }
+        .document-container {
+            margin-top: 10px;
+            border-top: 1px solid #e9ecef;
+            padding-top: 10px;
+        }
+        .document-card {
+            background-color: #f8f9fa;
+            border-left: 3px solid #007bff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        .document-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        .document-content {
+            margin-bottom: 5px;
+        }
+        .document-metadata {
+            font-size: 0.7rem;
+            color: #6c757d;
+        }
+        .input-group {
+            position: relative;
+        }
+        .form-control {
+            border-radius: 20px;
+            padding-right: 50px;
+        }
+        .send-button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            z-index: 10;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .clear-button {
+            margin-left: 10px;
+        }
+        .sources-toggle {
+            cursor: pointer;
+            color: #007bff;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        .sources-toggle:hover {
+            text-decoration: underline;
+        }
+        .sources-container {
+            display: none;
+            margin-top: 8px;
+        }
+        .session-badge {
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            background-color: #e9ecef;
+            border-radius: 15px;
+            color: #6c757d;
+        }
+        .dropdown-menu {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .session-item {
+            cursor: pointer;
+            padding: 8px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .session-item:hover {
+            background-color: #f8f9fa;
+        }
+        .session-item-active {
+            background-color: #e9ecef;
+        }
+        .session-item-info {
+            font-size: 0.7rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chat-header">
+            <div>
+                <h2 class="mb-0">Çok Dilli Adaptif RAG Chatbot</h2>
+                <p class="text-muted mb-0">
+                    Herhangi bir dilde soru sorun, cevabınızı aynı dilde alın!
+                </p>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sessionDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-history"></i> Oturumlar
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" id="sessionsList" aria-labelledby="sessionDropdown">
+                    <li><a class="dropdown-item" href="#" id="newSessionBtn"><i class="fas fa-plus"></i> Yeni Oturum</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <!-- Oturumlar buraya eklenecek -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="chat-container" id="chatContainer">
+            <div class="message bot-message">
+                Merhaba! Ben çok dilli bir chatbot'um. Bana istediğiniz dilde soru sorabilirsiniz. Size nasıl yardımcı olabilirim?
+                <div class="message-time">Şimdi</div>
+            </div>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Yükleniyor...</span>
+            </div>
+        </div>
+
+        <div class="chat-input-container">
+            <div class="d-flex">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="userInput" placeholder="Mesajınızı yazın..." autocomplete="off">
+                    <button class="btn btn-primary send-button" id="sendButton">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <button class="btn btn-outline-secondary clear-button" id="clearButton" title="Sohbeti Temizle">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            <div class="mt-2 text-end">
+                <span class="session-badge" id="sessionBadge">Oturum: Yeni</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatContainer = document.getElementById('chatContainer');
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+            const clearButton = document.getElementById('clearButton');
+            const loadingElement = document.getElementById('loading');
+            const sessionBadge = document.getElementById('sessionBadge');
+            const sessionsList = document.getElementById('sessionsList');
+            const newSessionBtn = document.getElementById('newSessionBtn');
+            
+            // Aktif oturum ID'si
+            let currentSessionId = null;
+            
+            // Sayfa yüklendiğinde yerel depolamadan oturum ID'sini al
+            function initSession() {
+                const savedSessionId = localStorage.getItem('currentSessionId');
+                if (savedSessionId) {
+                    currentSessionId = savedSessionId;
+                    sessionBadge.textContent = `Oturum: ${shortenSessionId(currentSessionId)}`;
+                    // Oturum mesajlarını yükle
+                    loadSessionMessages(currentSessionId);
+                } else {
+                    // Yeni oturum oluştur
+                    createNewSession();
+                }
+                
+                // Mevcut oturumları yükle
+                loadSessions();
+            }
+            
+            // Oturum ID'sini kısalt
+            function shortenSessionId(sessionId) {
+                if (!sessionId) return 'Yeni';
+                return sessionId.substring(0, 8) + '...';
+            }
+            
+            // Yeni oturum oluştur
+            function createNewSession() {
+                currentSessionId = null;
+                sessionBadge.textContent = 'Oturum: Yeni';
+                localStorage.removeItem('currentSessionId');
+                
+                // Sohbeti temizle, sadece karşılama mesajını bırak
+                while (chatContainer.childNodes.length > 1) {
+                    chatContainer.removeChild(chatContainer.lastChild);
+                }
+            }
+            
+            // Oturum mesajlarını yükle
+            async function loadSessionMessages(sessionId) {
+                if (!sessionId) return;
+                
+                try {
+                    const response = await fetch(`http://localhost:8000/sessions/${sessionId}`);
+                    
+                    if (!response.ok) {
+                        throw new Error('Oturum bulunamadı');
+                    }
+                    
+                    const sessionData = await response.json();
+                    
+                    // Sohbeti temizle
+                    while (chatContainer.childNodes.length > 0) {
+                        chatContainer.removeChild(chatContainer.lastChild);
+                    }
+                    
+                    // Mesajları ekle
+                    sessionData.messages.forEach(message => {
+                        if (message.role === 'user') {
+                            addMessage(message.content, 'user', new Date(message.timestamp));
+                        } else if (message.role === 'assistant') {
+                            // Basitleştirilmiş bot cevabı ekleme
+                            const messageDiv = document.createElement('div');
+                            messageDiv.className = 'message bot-message';
+                            messageDiv.textContent = message.content;
+                            
+                            const timeDiv = document.createElement('div');
+                            timeDiv.className = 'message-time';
+                            timeDiv.textContent = formatTime(new Date(message.timestamp));
+                            messageDiv.appendChild(timeDiv);
+                            
+                            chatContainer.appendChild(messageDiv);
+                        }
+                    });
+                    
+                    // Sohbet alanını en alta kaydır
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                    
+                } catch (error) {
+                    console.error('Oturum yükleme hatası:', error);
+                    // Hata durumunda yeni oturum oluştur
+                    createNewSession();
+                }
+            }
+            
+            // Mevcut oturumları yükle
+            async function loadSessions() {
+                try {
+                    const response = await fetch('http://localhost:8000/sessions');
+                    
+                    if (!response.ok) {
+                        throw new Error('Oturumlar yüklenemedi');
+                    }
+                    
+                    const sessions = await response.json();
+                    
+                    // Oturum listesini temizle (yeni oturum düğmesi ve ayırıcı hariç)
+                    const items = sessionsList.querySelectorAll('li:not(:first-child):not(:nth-child(2))');
+                    items.forEach(item => item.remove());
+                    
+                    // Oturumları ekle
+                    sessions.forEach(session => {
+                        const li = document.createElement('li');
+                        const date = new Date(session.created_at);
+                        const formattedDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+                        
+                        li.innerHTML = `
+                            <div class="session-item ${session.session_id === currentSessionId ? 'session-item-active' : ''}" data-session-id="${session.session_id}">
+                                <div>${shortenSessionId(session.session_id)}</div>
+                                <div class="session-item-info">
+                                    ${formattedDate} · ${session.message_count} mesaj
+                                </div>
+                            </div>
+                        `;
+                        
+                        sessionsList.appendChild(li);
+                        
+                        // Oturum seçme olayı
+                        li.querySelector('.session-item').addEventListener('click', function() {
+                            const sessionId = this.getAttribute('data-session-id');
+                            currentSessionId = sessionId;
+                            sessionBadge.textContent = `Oturum: ${shortenSessionId(sessionId)}`;
+                            localStorage.setItem('currentSessionId', sessionId);
+                            
+                            // Oturum mesajlarını yükle
+                            loadSessionMessages(sessionId);
+                            
+                            // Aktif oturumu vurgula
+                            document.querySelectorAll('.session-item').forEach(item => {
+                                item.classList.remove('session-item-active');
+                            });
+                            this.classList.add('session-item-active');
+                        });
+                    });
+                    
+                } catch (error) {
+                    console.error('Oturumları yükleme hatası:', error);
+                }
+            }
+            
+            // Mesaj gönderme fonksiyonu
+            async function sendMessage() {
+                const message = userInput.value.trim();
+                if (!message) return;
+                
+                // Kullanıcı mesajını ekle
+                addMessage(message, 'user');
+                userInput.value = '';
+                
+                // Yükleme göster
+                loadingElement.style.display = 'flex';
+                
+                try {
+                    const response = await fetch('http://localhost:8000/query', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ 
+                            question: message,
+                            session_id: currentSessionId
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error('API yanıt vermedi');
+                    }
+                    
+                    const data = await response.json();
+                    
+                    // Oturum ID'sini güncelle (ilk mesajsa)
+                    if (!currentSessionId) {
+                        currentSessionId = data.session_id;
+                        sessionBadge.textContent = `Oturum: ${shortenSessionId(currentSessionId)}`;
+                        localStorage.setItem('currentSessionId', currentSessionId);
+                        
+                        // Oturumları yeniden yükle
+                        loadSessions();
+                    }
+                    
+                    // Dil bilgisini hazırla
+                    let languageName = '';
+                    switch(data.detected_language) {
+                        case 'TR': languageName = 'Türkçe'; break;
+                        case 'EN': languageName = 'İngilizce'; break;
+                        case 'DE': languageName = 'Almanca'; break;
+                        case 'FR': languageName = 'Fransızca'; break;
+                        case 'ES': languageName = 'İspanyolca'; break;
+                        default: languageName = data.detected_language;
+                    }
+                    
+                    // Bot cevabını ekle
+                    if (data.generation) {
+                        addBotResponse(data.generation, languageName, data.documents);
+                    } else {
+                        addBotResponse('Üzgünüm, cevap üretemiyorum.', languageName, []);
+                    }
+                    
+                } catch (error) {
+                    console.error('Hata:', error);
+                    addBotResponse(`Bir hata oluştu: ${error.message}`, 'Sistem', []);
+                } finally {
+                    loadingElement.style.display = 'none';
+                    // Sohbet alanını en alta kaydır
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+            }
+            
+            // Mesaj ekleme fonksiyonu
+            function addMessage(text, sender, timestamp = null) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}-message`;
+                messageDiv.textContent = text;
+                
+                const timeDiv = document.createElement('div');
+                timeDiv.className = 'message-time';
+                timeDiv.textContent = timestamp ? formatTime(timestamp) : getCurrentTime();
+                
+                messageDiv.appendChild(timeDiv);
+                chatContainer.appendChild(messageDiv);
+                
+                // Sohbet alanını en alta kaydır
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Bot cevabı ekleme fonksiyonu (dil bilgisi ve belgelerle)
+            function addBotResponse(text, language, documents) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot-message';
+                
+                // Dil bilgisi ekle
+                if (language) {
+                    const langBadge = document.createElement('span');
+                    langBadge.className = 'language-badge badge bg-info';
+                    langBadge.textContent = `Dil: ${language}`;
+                    messageDiv.appendChild(langBadge);
+                    
+                    // Satır sonu ekle
+                    messageDiv.appendChild(document.createElement('br'));
+                }
+                
+                // Cevap metnini ekle
+                const textNode = document.createTextNode(text);
+                messageDiv.appendChild(textNode);
+                
+                // Zaman ekle
+                const timeDiv = document.createElement('div');
+                timeDiv.className = 'message-time';
+                timeDiv.textContent = getCurrentTime();
+                messageDiv.appendChild(timeDiv);
+                
+                // Eğer belgeler varsa, kaynakları göster/gizle düğmesi ekle
+                if (documents && documents.length > 0) {
+                    const sourcesToggle = document.createElement('div');
+                    sourcesToggle.className = 'sources-toggle';
+                    sourcesToggle.textContent = 'Kaynakları göster';
+                    
+                    const sourcesContainer = document.createElement('div');
+                    sourcesContainer.className = 'sources-container';
+                    
+                    // Belgeleri ekle
+                    documents.forEach((doc, index) => {
+                        const docCard = document.createElement('div');
+                        docCard.className = 'document-card';
+                        
+                        const docTitle = document.createElement('div');
+                        docTitle.className = 'document-title';
+                        docTitle.textContent = `Belge ${index + 1}`;
+                        
+                        const docContent = document.createElement('div');
+                        docContent.className = 'document-content';
+                        docContent.textContent = doc.content;
+                        
+                        const docMetadata = document.createElement('div');
+                        docMetadata.className = 'document-metadata';
+                        
+                        if (doc.metadata) {
+                            for (const [key, value] of Object.entries(doc.metadata)) {
+                                docMetadata.innerHTML += `${key}: ${value}<br>`;
+                            }
+                        }
+                        
+                        docCard.appendChild(docTitle);
+                        docCard.appendChild(docContent);
+                        docCard.appendChild(docMetadata);
+                        sourcesContainer.appendChild(docCard);
+                    });
+                    
+                    // Kaynakları göster/gizle işlevselliği
+                    sourcesToggle.addEventListener('click', function() {
+                        if (sourcesContainer.style.display === 'none' || !sourcesContainer.style.display) {
+                            sourcesContainer.style.display = 'block';
+                            sourcesToggle.textContent = 'Kaynakları gizle';
+                        } else {
+                            sourcesContainer.style.display = 'none';
+                            sourcesToggle.textContent = 'Kaynakları göster';
+                        }
+                        // Sohbet alanını güncelle
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                    });
+                    
+                    messageDiv.appendChild(sourcesToggle);
+                    messageDiv.appendChild(sourcesContainer);
+                }
+                
+                chatContainer.appendChild(messageDiv);
+                
+                // Sohbet alanını en alta kaydır
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Şu anki zamanı al
+            function getCurrentTime() {
+                const now = new Date();
+                return formatTime(now);
+            }
+            
+            // Zamanı biçimlendir
+            function formatTime(date) {
+                return date.getHours().toString().padStart(2, '0') + ':' + 
+                       date.getMinutes().toString().padStart(2, '0');
+            }
+            
+            // Yeni oturum düğmesi tıklama olayı
+            newSessionBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                createNewSession();
+            });
+            
+            // Gönder düğmesi tıklama olayı
+            sendButton.addEventListener('click', sendMessage);
+            
+            // Enter tuşu ile gönderme
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+            
+            // Temizle düğmesi tıklama olayı
+            clearButton.addEventListener('click', function() {
+                // İlk karşılama mesajı hariç tüm mesajları temizle
+                while (chatContainer.childNodes.length > 1) {
+                    chatContainer.removeChild(chatContainer.lastChild);
+                }
+            });
+            
+            // Sayfa yüklendiğinde oturumu başlat
+            initSession();
+            
+            // Sayfa yüklendiğinde input'a odaklan
+            userInput.focus();
+        });
+    </script>
+</body>
+</html> 

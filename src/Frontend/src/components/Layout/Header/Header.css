@@ -1,0 +1,266 @@
+/* Hamburger Menüsü CSS Kuralları */
+.hamburger {
+    display: none;
+    /* Varsayılan olarak gizle */
+    flex-direction: column;
+    /* Dikey hizalama */
+    cursor: pointer;
+    /* Tıklanabilir göster */
+    align-items: center;
+    /* Ortaya hizala */
+}
+
+.logout-btn {
+    border: none;
+    /* Çerçeveyi kaldırır */
+    background: none;
+    /* Arka planı kaldırır */
+    padding: 0;
+    /* İç boşluğu sıfırlar (isteğe bağlı) */
+    cursor: pointer;
+    /* Üzerine gelince imleç pointer olur */
+    display: flex;
+    /* İkonu ortalamak için isteğe bağlı */
+    align-items: center;
+    /* İkonu dikey ortalar */
+    justify-content: center;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+
+.container {
+    max-width: 1200px;
+    /* İsteğe bağlı genişlik ayarı */
+    margin: 0 auto;
+    padding: 1rem;
+    /* Dışarıdan boşluk */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    /* Biraz daha büyük font */
+    font-weight: 700;
+    /* Daha kalın yazı */
+    background-image: linear-gradient(135deg, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gradient-animation 6s ease infinite;
+    position: relative;
+    padding: 0.4rem 0;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.5px;
+}
+
+.logo-text::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, #667eea, #764ba2);
+    transition: width 0.3s ease;
+}
+
+.logo:hover .logo-text::after {
+    width: 100%;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.logo-beta {
+    font-size: 0.875rem;
+    /* text-sm */
+    font-weight: 500;
+    /* font-medium */
+    margin-left: 0.25rem;
+    /* ml-1 */
+}
+
+.nav-links {
+    margin-left: auto;
+    /* ml-auto */
+    margin-right: 1rem;
+    /* mr-4 */
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    /* space-x-4 */
+}
+
+.nav-link {
+    color: #374151;
+    /* text-gray-700 */
+    transition: color 0.2s;
+    position: relative;
+    padding: 0.4rem 0;
+    text-decoration: none !important;
+    /* Tüm tarayıcılarda altı çizgiyi kesinlikle kaldırır */
+    border: none !important;
+    /* Olası tüm sınırları kaldırır */
+    box-shadow: none !important;
+    /* Olası tüm gölgeleri kaldırır */
+}
+
+.nav-link:hover {
+    color: #667eea;
+}
+
+/* Restoring the hover underline effect */
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, #667eea, #764ba2);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Responsive tasarım ayarları */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        /* Dikey hizalama */
+        align-items: flex-start;
+        /* Soldan hizalama */
+    }
+
+    .nav-links {
+        margin-left: 0;
+        /* Soldan boşluk kaldırıldı */
+        margin-top: 1rem;
+        /* Üstten boşluk eklendi */
+        flex-direction: column;
+        /* Dikey hizalama */
+        align-items: flex-start;
+        /* Soldan hizalama */
+        gap: 0.5rem;
+        /* Aralardaki boşluk */
+    }
+
+    .nav-link {
+        padding: 0.5rem 0;
+        /* Yükseklik artırma */
+        width: 100%;
+        /* Tüm genişliği kaplama */
+        text-align: left;
+        /* Metni sola hizalama */
+    }
+}
+
+.bar {
+    height: 3px;
+    /* Çubuk yüksekliği */
+    width: 25px;
+    /* Çubuk genişliği */
+    background-color: #374151;
+    /* Çubuk rengi */
+    margin: 3px 0;
+    /* Aralarındaki boşluk */
+    transition: 0.4s;
+    /* Animasyon süresi */
+}
+
+/* Açıldığında çubukların dönüşü */
+.open {
+    transform: rotate(-45deg);
+
+    &:nth-child(2) {
+        opacity: 0;
+        /* Orta çubuğu gizle */
+    }
+
+    &:nth-child(3) {
+        transform: rotate(45deg);
+    }
+}
+
+/* Mobil Menü CSS Kuralları */
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    /* Dikey hizalama */
+    background-color: #f9fafb;
+    /* Arka plan rengi */
+    padding: 1rem;
+    /* İçerik boşluğu */
+    gap: 0.5rem;
+    /* Boşluklar */
+}
+
+/* Ekran boyutuna göre ayarlama */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        /* Mobilde gizle */
+    }
+
+    .hamburger {
+        display: flex;
+        /* Mobilde göster */
+        margin-left: auto;
+        /* Sağ tarafa al */
+    }
+}
+
+.logout-text {
+    color: #dc2626 !important;
+    /* Kırmızı renk */
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.logout-text:hover {
+    color: #b91c1c !important;
+    /* Hover durumunda daha koyu kırmızı */
+}
+
+/* Logout için özel altçizgi stil */
+.logout-text::after {
+    background-image: linear-gradient(to right, #ff6b6b, #dc2626) !important;
+}

@@ -1,0 +1,237 @@
+/* Genel stil */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 80px);
+  background-color: #f5f5f5;
+  padding: 20px;
+  padding-top: 30px;
+}
+
+.signup-box {
+  background-color: white;
+  border-radius: 16px;
+  padding: 40px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #333;
+  font-weight: 600;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 25px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.benefits-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #444;
+}
+
+.benefits-list li:before {
+  content: '✓';
+  margin-right: 10px;
+  color: #6c5ce7;
+  font-weight: bold;
+}
+
+.google-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.2s;
+}
+
+.google-login-btn:hover {
+  background-color: #f8f8f8;
+}
+
+.google-logo {
+  margin-right: 10px;
+}
+
+.divider {
+  margin: 20px 0;
+  font-size: 14px;
+  color: #888;
+}
+
+/* Form stili */
+.signup-form {
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.form-label {
+  flex: 0 0 80px;
+  /* Sabit genişlik */
+  font-size: 15px;
+  color: #333;
+  text-align: left;
+  font-weight: normal;
+}
+
+.form-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  border-color: #1a73e8;
+}
+
+.signup-submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #a2bbdf;
+  /* Form geçerli olmadığında soluk mavi */
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+/* Aktif buton stili - tüm alanlar doldurulduğunda */
+.signup-submit-btn.active {
+  background-color: #1a73e8;
+  /* Form geçerli olduğunda canlı mavi */
+  color: white;
+}
+
+.signup-submit-btn.active:hover {
+  background-color: #1669d6;
+  /* Hover durumunda koyu mavi */
+}
+
+.terms {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.terms a {
+  color: #d47307;
+  text-decoration: none;
+}
+
+.terms a:hover {
+  text-decoration: underline;
+}
+
+/* Modal stilleri */
+.missing-fields-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 15px 0;
+}
+
+.missing-fields-list li {
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  background-color: #f8f8f8;
+  border-left: 3px solid #1a73e8;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.modal-ok-btn {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.modal-ok-btn:hover {
+  background-color: #1669d6;
+}
+
+/* Responsive tasarım için medya sorguları */
+@media (max-width: 768px) {
+  .signup-box {
+    padding: 30px;
+    max-width: 400px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-label {
+    flex: 0 0 auto;
+    margin-bottom: 5px;
+  }
+
+  .form-input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-box {
+    padding: 20px;
+    max-width: 320px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .form-input {
+    padding: 10px;
+  }
+
+  .google-login-btn {
+    padding: 10px;
+  }
+
+  .signup-submit-btn {
+    padding: 10px;
+  }
+}

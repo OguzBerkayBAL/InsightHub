@@ -1,0 +1,51 @@
+.trending-container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .papers-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  
+  .papers-table th, .papers-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .papers-table th {
+    background-color: #f5f5f5;
+  }
+  .author-icon {
+    display: flex;  /* Flexbox ile içeriği hizalıyoruz */
+    justify-content: center;  /* Yatayda ortalama */
+    align-items: center;  /* Dikeyde ortalama */
+    width: 30px;  /* Genişliği ayarlıyoruz */
+    height: 30px;  /* Yüksekliği ayarlıyoruz */
+    background-color: #efe8e8;  /* İsteğe bağlı arka plan */
+    color: #333;  /* Yazı rengi */
+    font-size: 12px;  /* Font boyutunu küçültüyoruz */
+    font-weight: bold;
+    border-radius: 50%;  /* Yuvarlak ikonlar için */
+    margin-right: 10px;  /* Sağ tarafa boşluk ekliyoruz */
+    text-align: center;  /* Yatayda hizalama */
+  }
+  
+  
+  .papers-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  @media (max-width: 768px) {
+    .papers-table th, .papers-table td {
+      padding: 8px;
+    }
+  }
+  

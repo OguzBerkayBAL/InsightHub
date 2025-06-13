@@ -1,0 +1,48 @@
+/* Footer.css */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Sayfanın en az ekran yüksekliği kadar olması */
+}
+
+.main-content {
+  flex: 1; /* Ana içeriğin footer dışındaki kısmı doldurması */
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto; /* Ana içeriğin tamamlanmasının ardından footer'ın en alta taşınmasını sağlar */
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  display: inline;
+  margin: 0 10px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #4a4a4a;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}

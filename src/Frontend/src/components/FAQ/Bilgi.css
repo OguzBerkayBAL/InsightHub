@@ -1,0 +1,105 @@
+/* Genel sıfırlama */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* App konteyneri */
+.app-container {
+    display: flex;
+    flex-direction: column; /* Dikey hizalama */
+    min-height: 100vh; /* Sayfanın tamamını kapsaması için */
+}
+
+/* Body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    overflow-y: auto; /* Dikey kaydırma özelliği */
+}
+
+/* Bilgi bileşeni stil ayarları */
+.faq-container {
+    max-width: 900px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; /* Ortalamak için margin ekledik */
+}
+
+/* Başlık stil ayarları */
+.faq-container h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center; /* Başlığı ortala */
+}
+
+/* FAQ kutusu stil ayarları */
+.faq-box {
+    margin-top: 10px;
+}
+
+/* Soru başlıkları */
+.faq-box h2 {
+    font-size: 24px;
+    color: #444;
+    margin: 15px 0;
+    border-bottom: 2px solid #ffcc00; /* Alt çizgi ekle */
+    padding-bottom: 5px; /* Alt çizgi ile metin arasında boşluk bırak */
+}
+
+/* Alt başlıklar */
+.faq-box h3 {
+    font-size: 20px;
+    color: #666;
+    margin: 15px 0;
+}
+
+/* Paragraflar */
+.faq-box p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.6; /* Satır yüksekliğini artırarak okunabilirliği artır */
+}
+
+/* Liste stil ayarları */
+.faq-box ul {
+    list-style-type: none; /* Noktaları kaldır */
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.faq-box ul li {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* Onay işareti simgesi */
+.faq-box ul li::before {
+    content: '✓'; /* Onay işareti simgesi */
+    color: #4CAF50;
+    margin-right: 10px;
+}
+
+/* Sign up butonu stil ayarları */
+.sign-up-button {
+    background-color: #ffcc00;
+    color: black;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px; /* Buton metni boyutunu artır */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Renk geçişi için animasyon ekle */
+}
+
+.sign-up-button:hover {
+    background-color: #ffb700; /* Hover efekti */
+}

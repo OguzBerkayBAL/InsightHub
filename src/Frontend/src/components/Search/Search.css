@@ -1,0 +1,73 @@
+/* Ana kapsayıcı */
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0; /* Üst ve alt boşluk ekleyelim */
+  }
+  
+  .relative {
+    position: relative;
+    max-width: 900px; /* Maksimum genişliği ayarladık */
+    width: 100%; /* Genişliği %100 yaparak responsive hale getiriyoruz */
+  }
+  
+  .icon-left, .icon-right {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 50%; /* İkonları dikey olarak ortalıyoruz */
+    transform: translateY(-50%); /* İkonları tam ortalamak için */
+  }
+  
+  .icon-left {
+    left: 10px; /* Sol boşluk */
+  }
+  
+  .icon-right {
+    right: 10px; /* Sağ boşluk */
+  }
+  
+  .search-input {
+    width: 100%;
+    padding-left: 40px; /* Sol taraftaki ikonun yerini ayarladık */
+    padding-right: 40px; /* Sağ taraftaki ikonun yerini ayarladık */
+    padding-top: 12px; /* Yukarıdan boşluk */
+    padding-bottom: 12px; /* Aşağıdan boşluk */
+    border: 1px solid #D1D5DB; /* Kenar rengi */
+    border-radius: 50px; /* Yumuşak kenarlar */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); /* Gölge efekti */
+    outline: none; /* Kenarlık olmadan */
+    transition: border-color 0.3s; /* Kenar rengi geçişi */
+  }
+  
+  .search-input:focus {
+    border-color: black; /* Odaklandığında kenar rengi */
+  }
+  
+  /* Oval itemlerin kapsayıcısı */
+  .oval {
+    display: flex;
+    justify-content: center; /* Oval itemleri ortalıyoruz */
+    margin-top: 20px; /* Üst boşluk */
+  }
+  
+  .oval-container {
+    display: flex; /* Flexbox ile yan yana dizmek için */
+    flex-wrap: wrap; /* Yeni satıra geçmek için */
+    justify-content: center; /* Ortalamak için */
+    max-width: 900px; /* Maksimum genişlik */
+  }
+  
+  .oval-item {
+    width: 180px; /* Oval yapının genişliği */
+    padding: 10px; /* İçerik için boşluk */
+    margin: 5px; /* Aralık */
+    background-color: #F3F4F6; /* Arka plan rengi */
+    border-radius: 20px; /* Oval kenar */
+    text-align: center; /* Metni ortala */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Gölge efekti */
+  }
+  
+  h2{
+    text-align: center;
+  }
