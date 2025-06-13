@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 import './Newslatter.css';
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -10,6 +11,7 @@ const Newsletter = () => {
   const [status, setStatus] = useState({ message: '', type: '' });
   const [isLoading, setIsLoading] = useState(false);
   const { currentUser, isAuthenticated } = useAuth();
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleSubscribe = async (e) => {
@@ -147,9 +149,9 @@ const Newsletter = () => {
       <div className="newsletter-content">
         <div className="newsletter-header">
           <span className="newsletter-icon">📧</span>
-          <h2>Newsletter</h2>
+          <h2>{t('newsletter.title')}</h2>
         </div>
-        <p>Get summaries of trending comp sci papers delivered straight to your inbox:</p>
+        <p>{t('newsletter.description')}</p>
 
         {status.message && (
           <div className={`alert ${status.type === 'success' ? 'alert-success' : 'alert-error'}`}>
@@ -160,7 +162,7 @@ const Newsletter = () => {
         <form onSubmit={handleSubscribe} className="newsletter-form">
           <input
             type="email"
-            placeholder="Email address"
+            placeholder={t('newsletter.emailPlaceholder')}
             className="email-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -171,16 +173,16 @@ const Newsletter = () => {
             value={frequency}
             onChange={(e) => setFrequency(e.target.value)}
           >
-            <option value="daily">Daily</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
+            <option value="daily">{t('newsletter.daily')}</option>
+            <option value="weekly">{t('newsletter.weekly')}</option>
+            <option value="monthly">{t('newsletter.monthly')}</option>
           </select>
           <button
             type="submit"
             className="subscribe-button"
             disabled={isLoading}
           >
-            {isLoading ? 'Subscribing...' : 'Subscribe'}
+            {isLoading ? t('common.loading') : t('newsletter.subscribe')}
           </button>
         </form>
         <p className="unsubscribe-text">Unsubscribe anytime.</p>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useI18n } from '../../hooks/useI18n';
 import "./TrendingPapers.css"
 // JSON verilerini doğrudan içeri aktaralım (gerçek API yerine yerel veri kullanacağız)
 const papersData = [
@@ -34,6 +35,7 @@ const papersData = [
 
 const TrendingPapers = () => {
   const [papers, setPapers] = useState([]);
+  const { t } = useI18n();
 
   // useEffect ile JSON verisini alalım (gerçek API değil, yerel veri)
   useEffect(() => {
@@ -43,15 +45,15 @@ const TrendingPapers = () => {
 
   return (
     <div className="trending-container">
-      <h2>Trending Comp Sci Papers</h2>
+      <h2>{t('trending.title')}</h2>
       <table className="papers-table">
         <thead>
           <tr>
-            <th>Author</th>
-            <th>Title</th>
-            <th>Published</th>
-            <th>Views</th>
-            <th>Comments</th>
+            <th>{t('trending.headers.author')}</th>
+            <th>{t('trending.headers.title')}</th>
+            <th>{t('trending.headers.published')}</th>
+            <th>{t('trending.headers.views')}</th>
+            <th>{t('trending.headers.comments')}</th>
           </tr>
         </thead>
         <tbody>

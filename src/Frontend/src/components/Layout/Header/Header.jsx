@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { LogoutOutlined } from "@ant-design/icons";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useI18n } from '../../../hooks/useI18n';
+import LanguageSwitcher from '../../LanguageSwitcher/LanguageSwitcher';
 import "./Header.css";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { currentUser, logout } = useAuth();
+  const { t } = useI18n();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -26,13 +29,16 @@ const Header = () => {
             <a href="/" className="logo-text">Insight Hub</a>
           </div>
           <div className="nav-links">
-            <a href="/assistant" className="nav-link">Assistant</a>
+            <a href="/assistant" className="nav-link">{t('nav.assistant')}</a>
             <span>|</span>
-            <a href="/trending" className="nav-link">Trending</a>
+            <a href="/trending" className="nav-link">{t('nav.trending')}</a>
             <span>|</span>
-            <a href="/newsletter" className="nav-link">Newsletter</a>
+            <a href="/newsletter" className="nav-link">{t('nav.newsletter')}</a>
             <span>|</span>
-            <a href="/pricing" className="nav-link">Pricing</a>
+            <a href="/pricing" className="nav-link">{t('nav.pricing')}</a>
+            <span>|</span>
+
+            <LanguageSwitcher />
             <span>|</span>
 
             {currentUser ? (
@@ -44,14 +50,14 @@ const Header = () => {
                   className="nav-link logout-text"
                   onClick={handleLogout}
                 >
-                  Log Out
+                  {t('nav.logout')}
                 </a>
               </>
             ) : (
               <>
-                <a href="/login" className="nav-link">Log in</a>
+                <a href="/login" className="nav-link">{t('nav.login')}</a>
                 <span>|</span>
-                <a href="/signup" className="nav-link">Sign up</a>
+                <a href="/signup" className="nav-link">{t('nav.signup')}</a>
               </>
             )}
           </div>
@@ -66,10 +72,14 @@ const Header = () => {
       {/* Mobil Menü */}
       {isOpen && (
         <div className="mobile-menu">
-          <a href="/assistant" className="nav-link" onClick={toggleMenu}>Assistant</a>
-          <a href="/trending" className="nav-link" onClick={toggleMenu}>Trending</a>
-          <a href="/newsletter" className="nav-link" onClick={toggleMenu}>Newsletter</a>
-          <a href="/pricing" className="nav-link" onClick={toggleMenu}>Pricing</a>
+          <a href="/assistant" className="nav-link" onClick={toggleMenu}>{t('nav.assistant')}</a>
+          <a href="/trending" className="nav-link" onClick={toggleMenu}>{t('nav.trending')}</a>
+          <a href="/newsletter" className="nav-link" onClick={toggleMenu}>{t('nav.newsletter')}</a>
+          <a href="/pricing" className="nav-link" onClick={toggleMenu}>{t('nav.pricing')}</a>
+
+          <div style={{ padding: '10px 0' }}>
+            <LanguageSwitcher />
+          </div>
 
           {currentUser ? (
             <>
@@ -82,13 +92,13 @@ const Header = () => {
                   toggleMenu();
                 }}
               >
-                Log Out
+                {t('nav.logout')}
               </a>
             </>
           ) : (
             <>
-              <a href="/login" className="nav-link" onClick={toggleMenu}>Log in</a>
-              <a href="/signup" className="nav-link" onClick={toggleMenu}>Sign up</a>
+              <a href="/login" className="nav-link" onClick={toggleMenu}>{t('nav.login')}</a>
+              <a href="/signup" className="nav-link" onClick={toggleMenu}>{t('nav.signup')}</a>
             </>
           )}
         </div>

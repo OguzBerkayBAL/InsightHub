@@ -1,0 +1,176 @@
+{
+    "nav": {
+        "assistant": "Asistan",
+        "trending": "Trend Olan",
+        "newsletter": "Bülten",
+        "pricing": "Fiyatlandırma",
+        "login": "Giriş Yap",
+        "signup": "Kayıt Ol",
+        "logout": "Çıkış Yap",
+        "profile": "Profil"
+    },
+    "home": {
+        "title": "Bilgisayar Bilimcileri için AI Araştırma Asistanı",
+        "searchPlaceholder": "Herhangi bir bilgisayar bilimleri konusunu araştır",
+        "topics": {
+            "dpoVsPpo": "DPO vs PPO",
+            "doubleDescent": "Çifte iniş nedir?",
+            "ranking": "Liste bazlı vs çift bazlı sıralama",
+            "aiAgriculture": "AI tarımda nasıl kullanılır?",
+            "backpropagation": "Python'da Backpropagation Uygula",
+            "attention": "什么是注意力?",
+            "attentionPaper": "Attention Is All You Need",
+            "kan": "KAN: Kolmogorov-Arnold Ağları",
+            "summarize": "2410.01201'i 3 madde halinde özetle",
+            "yannLecun": "Yann LeCun"
+        }
+    },
+    "faq": {
+        "title": "Sıkça Sorulan Sorular",
+        "signupButton": "Ücretsiz kayıt ol",
+        "whatIsInsightHub": {
+            "title": "Insight Hub Nedir",
+            "name": "Insight Hub",
+            "description": "bilgisayar bilimleri araştırmaları hakkında sorulara yanıt vermeye yardımcı olan yeni bir AI araştırma asistanıdır."
+        },
+        "differences": {
+            "title": "ChatGPT'den farkı nedir?",
+            "point1": "Bilgisayar bilimleri araştırmalarına odaklanıyoruz, yanıtların bilgisayar bilimlerine dayalı olmasını ve diğer alanlardan araştırmalarla karışmamasını sağlıyoruz.",
+            "point2": "Henüz atıf almamış trend olan yeni makaleleri belirlemek için atıfları (Semantic Scholar aracılığıyla) ve sosyal metrikleri (X, HackerNews, YouTube ve GitHub'dan) hesaba katıyoruz.",
+            "point3": "Insight Hub'ın sorunuzu yanıtlamak için hangi makaleleri kullandığını bilmeniz için kaynaklar sağlıyoruz.",
+            "point4": "arXiv'deki en son makalelerle her zaman günceliz.",
+            "point5": "Otomatik olarak oluşturulan takip soruları ve gömülü konu bağlantıları kullanarak keşfi teşvik ediyoruz."
+        },
+        "questionTypes": {
+            "title": "Insight Hub hangi tür soruları yanıtlayabilir?",
+            "description": "Insight Hub'ın bu beta sürümü için, soruları yanıtlamaya çalışmak için özet ve makale özetlerinin bir kombinasyonunu kullanır. Bu nedenle, yukarıdaki örnekler gibi üst düzey soruları yanıtlamada mükemmeldir. Daha karmaşık soruları yanıtlamaya yardımcı olmak için tam makaleleri sisteme alma konusunda çalışıyoruz."
+        },
+        "suggestions": {
+            "title": "Nasıl öneride bulunabilirim?",
+            "description": "Özellikle yanıtların kalitesini iyileştirme konusunda sahip olduğunuz her türlü geri bildirimi çok isteriz.",
+            "contact": "Bize istediğiniz zaman bir not bırakın:"
+        },
+        "cost": {
+            "title": "Maliyeti ne kadar?",
+            "description": "Günde 5 arama yapmak için ücretsiz bir hesap açabilirsiniz. Sınırsız arama yapmak için Pro planımıza sadece ayda 12$ karşılığında yükseltebilirsiniz."
+        }
+    },
+    "newsletter": {
+        "title": "Bülten",
+        "description": "En son AI araştırmaları ve içgörüleri ile güncel kalın",
+        "emailPlaceholder": "E-posta adresinizi girin",
+        "frequency": "Sıklık",
+        "subscribe": "Abone Ol",
+        "daily": "Günlük",
+        "weekly": "Haftalık",
+        "monthly": "Aylık",
+        "loginRequired": "Bültene abone olmak için lütfen giriş yapın",
+        "loginButton": "Giriş Yap",
+        "signupButton": "Kayıt Ol"
+    },
+    "pricing": {
+        "title": "Planlar ve Fiyatlandırma",
+        "free": {
+            "title": "Ücretsiz",
+            "description": "Insight Hub'ı ücretsiz deneyin",
+            "price": "$0",
+            "button": "Ücretsiz Dene"
+        },
+        "pro": {
+            "title": "Pro",
+            "description": "Bireysel araştırmacılar için",
+            "price": "$12/ay",
+            "button": "Ücretsiz Dene"
+        },
+        "team": {
+            "title": "Takım",
+            "description": "Üniversiteler ve laboratuvarlar için",
+            "price": "Özel",
+            "button": "İletişime Geç"
+        },
+        "noCard": "Kredi kartı gerektirmez",
+        "cancelAnytime": "İstediğiniz zaman iptal edin",
+        "features": {
+            "limitedSearches": "Günde 5 Arama",
+            "unlimitedSearches": "Sınırsız Arama",
+            "followUpQuestions": "Takip Soruları",
+            "searchHistory": "Arama Geçmişi",
+            "trendingPapers": "Popüler Makaleler",
+            "centralizedBilling": "Merkezi Faturalandırma"
+        }
+    },
+    "auth": {
+        "loginTitle": "Giriş Yap",
+        "signupTitle": "Kayıt Ol",
+        "email": "E-posta",
+        "password": "Şifre",
+        "confirmPassword": "Şifreyi Onayla",
+        "name": "İsim",
+        "loginButton": "Giriş Yap",
+        "signupButton": "Kayıt Ol",
+        "forgotPassword": "Şifremi Unuttum?",
+        "noAccount": "Hesabınız yok mu?",
+        "hasAccount": "Zaten hesabınız var mı?"
+    },
+    "language": {
+        "select": "Dil",
+        "english": "English",
+        "turkish": "Türkçe"
+    },
+    "comments": {
+        "title": "Görüşlerimiz",
+        "description": "Uzman tavsiyelerimizle işinizi nasıl büyüteceğinizi öğrenin.",
+        "posts": {
+            "aiResearch": {
+                "title": "Yapay Zeka Araştırmalarının Geleceği",
+                "description": "Yapay zeka alanındaki en son atılımları ve bunların bilimsel araştırmalar üzerindeki potansiyel etkilerini keşfedin. Sinir ağlarından makine öğrenmesi algoritmalarına kadar, yapay zekanın araştırma manzarasını nasıl dönüştürdüğünü öğrenin.",
+                "date": "15 Ocak 2024",
+                "category": "YZ Araştırmaları",
+                "author": {
+                    "name": "Dr. Sarah Johnson",
+                    "role": "YZ Araştırma Direktörü"
+                }
+            },
+            "machinelearning": {
+                "title": "Makine Öğrenmesi En İyi Uygulamaları",
+                "description": "Gerçek dünya uygulamalarında makine öğrenmesi çözümlerini uygulamak için kapsamlı bir rehber. Veri ön işleme, model seçimi ve sonuç veren dağıtım stratejileri hakkında bilgi edinin.",
+                "date": "10 Ocak 2024",
+                "category": "Makine Öğrenmesi",
+                "author": {
+                    "name": "Prof. Alex Chen",
+                    "role": "ML Mühendislik Lideri"
+                }
+            },
+            "dataanalysis": {
+                "title": "İleri Düzey Veri Analizi Teknikleri",
+                "description": "Modern veri analizi metodolojileri ve araçlarını derinlemesine inceleyin. İstatistiksel modellemeden görselleştirme tekniklerine kadar, karmaşık veri setlerinden anlamlı içgörüler çıkarma sanatında ustalaşın.",
+                "date": "5 Ocak 2024",
+                "category": "Veri Bilimi",
+                "author": {
+                    "name": "Dr. Emily Rodriguez",
+                    "role": "Veri Bilimi Müdürü"
+                }
+            }
+        }
+    },
+    "trending": {
+        "title": "Popüler Bilgisayar Bilimleri Makaleleri",
+        "headers": {
+            "author": "Yazar",
+            "title": "Başlık",
+            "published": "Yayınlanma",
+            "views": "Görüntüleme",
+            "comments": "Yorumlar"
+        }
+    },
+    "common": {
+        "loading": "Yükleniyor...",
+        "error": "Hata",
+        "success": "Başarılı",
+        "cancel": "İptal",
+        "save": "Kaydet",
+        "delete": "Sil",
+        "edit": "Düzenle",
+        "close": "Kapat"
+    }
+}

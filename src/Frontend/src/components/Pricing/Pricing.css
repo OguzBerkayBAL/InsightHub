@@ -2,12 +2,15 @@
 
 .pricing-container {
   text-align: center;
-  padding: 40px; /* Daha büyük padding */
+  padding: 40px;
+  /* Daha büyük padding */
 }
 
 h2 {
-  font-size: 2.5rem; /* Daha büyük başlık */
-  margin-bottom: 40px; /* Daha fazla boşluk */
+  font-size: 2.5rem;
+  /* Daha büyük başlık */
+  margin-bottom: 40px;
+  /* Daha fazla boşluk */
 }
 
 .plans {
@@ -15,51 +18,63 @@ h2 {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 40px; /* Kartlar arasındaki boşluğu artır */
+  gap: 40px;
+  /* Kartlar arasındaki boşluğu artır */
 }
 
 .plan-card {
   background-color: white;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
-  padding: 30px; /* Kartın içindeki boşluğu artır */
-  width: 300px; /* Kart genişliği büyütüldü */
+  padding: 30px;
+  /* Kartın içindeki boşluğu artır */
+  width: 300px;
+  /* Kart genişliği büyütüldü */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   text-align: left;
-  transition: transform 0.2s ease; /* Hover efekti */
+  transition: transform 0.2s ease;
+  /* Hover efekti */
 }
 
 .plan-card:hover {
-  transform: scale(1.1); /* Hover efektiyle daha büyük */
+  transform: scale(1.1);
+  /* Hover efektiyle daha büyük */
 }
 
 .plan-title {
   text-align: center;
   color: #8b0037;
-  font-size: 1.75rem; /* Plan başlık boyutunu artır */
+  font-size: 1.75rem;
+  /* Plan başlık boyutunu artır */
 }
 
 .plan-price {
   text-align: center;
-  font-size: 2.5rem; /* Fiyat boyutunu artır */
+  font-size: 2.5rem;
+  /* Fiyat boyutunu artır */
   color: #333;
   margin: 20px 0;
 }
 
 .plan-button {
-  background-color: #ffcc00;
-  color: #333;
-  padding: 15px 30px; /* Butonun boyutlarını artır */
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 15px 30px;
+  /* Butonun boyutlarını artır */
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin: 20px auto;
   display: block;
-  font-size: 1rem; /* Buton yazı boyutunu artır */
+  font-size: 1rem;
+  /* Buton yazı boyutunu artır */
+  transition: all 0.3s ease;
 }
 
 .plan-button:hover {
-  background-color: #f0b400;
+  background: linear-gradient(135deg, #5a6fd8, #6a4190);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .no-card,
@@ -105,7 +120,8 @@ p {
 
 @media (max-width: 480px) {
   h2 {
-    font-size: 2rem; /* Başlık boyutunu küçült */
+    font-size: 2rem;
+    /* Başlık boyutunu küçült */
   }
 
   .plan-title {

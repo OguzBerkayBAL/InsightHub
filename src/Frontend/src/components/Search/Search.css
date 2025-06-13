@@ -1,73 +1,159 @@
 /* Ana kapsayıcı */
 .search-bar-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0; /* Üst ve alt boşluk ekleyelim */
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  /* Üst ve alt boşluk ekleyelim */
+}
+
+.relative {
+  position: relative;
+  max-width: 900px;
+  /* Maksimum genişliği ayarladık */
+  width: 100%;
+  /* Genişliği %100 yaparak responsive hale getiriyoruz */
+}
+
+.icon-left,
+.icon-right {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 50%;
+  /* İkonları dikey olarak ortalıyoruz */
+  transform: translateY(-50%);
+  /* İkonları tam ortalamak için */
+}
+
+.icon-left {
+  left: 10px;
+  /* Sol boşluk */
+}
+
+.icon-right {
+  right: 10px;
+  /* Sağ boşluk */
+}
+
+.search-input {
+  width: 100%;
+  padding-left: 40px;
+  /* Sol taraftaki ikonun yerini ayarladık */
+  padding-right: 40px;
+  /* Sağ taraftaki ikonun yerini ayarladık */
+  padding-top: 12px;
+  /* Yukarıdan boşluk */
+  padding-bottom: 12px;
+  /* Aşağıdan boşluk */
+  border: 1px solid #D1D5DB;
+  /* Kenar rengi */
+  border-radius: 50px;
+  /* Yumuşak kenarlar */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  /* Gölge efekti */
+  outline: none;
+  /* Kenarlık olmadan */
+  transition: border-color 0.3s;
+  /* Kenar rengi geçişi */
+}
+
+.search-input:focus {
+  border-color: #667eea;
+  /* Insight Hub teması ile uyumlu odaklanma rengi */
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  /* Hafif mavi glow efekti */
+}
+
+/* Oval itemlerin kapsayıcısı */
+.oval {
+  display: flex;
+  justify-content: center;
+  /* Oval itemleri ortalıyoruz */
+  margin-top: 20px;
+  /* Üst boşluk */
+}
+
+.oval-container {
+  display: flex;
+  /* Flexbox ile yan yana dizmek için */
+  flex-wrap: wrap;
+  /* Yeni satıra geçmek için */
+  justify-content: center;
+  /* Ortalamak için */
+  max-width: 900px;
+  /* Maksimum genişlik */
+}
+
+.oval-item {
+  width: 180px;
+  /* Oval yapının genişliği */
+  padding: 10px;
+  /* İçerik için boşluk */
+  margin: 5px;
+  /* Aralık */
+  background-color: #F3F4F6;
+  /* Arka plan rengi */
+  border-radius: 20px;
+  /* Oval kenar */
+  text-align: center;
+  /* Metni ortala */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  /* Gölge efekti */
+  border: 2px solid transparent;
+  /* Şeffaf border hover için */
+  transition: all 0.3s ease;
+  /* Yumuşak geçiş efekti */
+  cursor: pointer;
+  /* Fare üzerine gelince pointer */
+  position: relative;
+  overflow: hidden;
+}
+
+.oval-item:hover {
+  background: linear-gradient(135deg, #667eea, #764ba2, #6B8DD6, #8E37D7);
+  background-size: 300% 300%;
+  animation: gradient-animation 3s ease infinite;
+  color: white;
+  transform: translateY(-2px);
+  /* Hafif yukarı kaldırma */
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  /* Insight Hub rengi ile gölge */
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.oval-item:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 18px;
+  padding: 2px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: exclude;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+h2 {
+  text-align: center;
+}
+
+/* Insight Hub ile aynı gradient animasyonu */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  .relative {
-    position: relative;
-    max-width: 900px; /* Maksimum genişliği ayarladık */
-    width: 100%; /* Genişliği %100 yaparak responsive hale getiriyoruz */
+
+  50% {
+    background-position: 100% 50%;
   }
-  
-  .icon-left, .icon-right {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    top: 50%; /* İkonları dikey olarak ortalıyoruz */
-    transform: translateY(-50%); /* İkonları tam ortalamak için */
+
+  100% {
+    background-position: 0% 50%;
   }
-  
-  .icon-left {
-    left: 10px; /* Sol boşluk */
-  }
-  
-  .icon-right {
-    right: 10px; /* Sağ boşluk */
-  }
-  
-  .search-input {
-    width: 100%;
-    padding-left: 40px; /* Sol taraftaki ikonun yerini ayarladık */
-    padding-right: 40px; /* Sağ taraftaki ikonun yerini ayarladık */
-    padding-top: 12px; /* Yukarıdan boşluk */
-    padding-bottom: 12px; /* Aşağıdan boşluk */
-    border: 1px solid #D1D5DB; /* Kenar rengi */
-    border-radius: 50px; /* Yumuşak kenarlar */
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); /* Gölge efekti */
-    outline: none; /* Kenarlık olmadan */
-    transition: border-color 0.3s; /* Kenar rengi geçişi */
-  }
-  
-  .search-input:focus {
-    border-color: black; /* Odaklandığında kenar rengi */
-  }
-  
-  /* Oval itemlerin kapsayıcısı */
-  .oval {
-    display: flex;
-    justify-content: center; /* Oval itemleri ortalıyoruz */
-    margin-top: 20px; /* Üst boşluk */
-  }
-  
-  .oval-container {
-    display: flex; /* Flexbox ile yan yana dizmek için */
-    flex-wrap: wrap; /* Yeni satıra geçmek için */
-    justify-content: center; /* Ortalamak için */
-    max-width: 900px; /* Maksimum genişlik */
-  }
-  
-  .oval-item {
-    width: 180px; /* Oval yapının genişliği */
-    padding: 10px; /* İçerik için boşluk */
-    margin: 5px; /* Aralık */
-    background-color: #F3F4F6; /* Arka plan rengi */
-    border-radius: 20px; /* Oval kenar */
-    text-align: center; /* Metni ortala */
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Gölge efekti */
-  }
-  
-  h2{
-    text-align: center;
-  }
+}

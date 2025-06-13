@@ -66,19 +66,22 @@ p {
 }
 
 .subscribe-button {
-  background-color: #facc15;
-  /* Sarı buton */
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  /* Insight Hub gradient */
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .subscribe-button:hover {
-  background-color: #eab308;
-  /* Daha koyu sarı */
+  background: linear-gradient(135deg, #5a6fd8, #6a4190);
+  /* Daha koyu Insight Hub tonları */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .unsubscribe-text {
@@ -145,12 +148,14 @@ p {
 }
 
 .login-redirect-btn {
-  background-color: #facc15;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: #fff;
 }
 
 .login-redirect-btn:hover {
-  background-color: #eab308;
+  background: linear-gradient(135deg, #5a6fd8, #6a4190);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .signup-redirect-btn {

@@ -1,57 +1,60 @@
 import React from 'react';
+import { useI18n } from '../../hooks/useI18n';
 import './Pricing.css';
 
 const Pricing = () => {
+  const { t } = useI18n();
+
   return (
     <div className="pricing-container">
-      <h2>Plans and Pricing</h2>
+      <h2>{t('pricing.title')}</h2>
       <p></p>
       <div className="plans">
         {/* Free Plan */}
         <div className="plan-card">
-          <h3 className="plan-title">Free</h3>
-          <p>Try Emergent Mind for free</p>
-          <p className="plan-price">$0</p>
-          <button className="plan-button">Try it Free</button>
-          <p className="no-card">No credit card required</p>
+          <h3 className="plan-title">{t('pricing.free.title')}</h3>
+          <p>{t('pricing.free.description')}</p>
+          <p className="plan-price">{t('pricing.free.price')}</p>
+          <button className="plan-button">{t('pricing.free.button')}</button>
+          <p className="no-card">{t('pricing.noCard')}</p>
           <ul>
-            <li>5 Searches/Day</li>
-            <li>Follow-Up Questions</li>
-            <li>Search History</li>
-            <li>Trending Papers</li>
-            <li className="disabled">Centralized Billing</li>
+            <li>{t('pricing.features.limitedSearches')}</li>
+            <li>{t('pricing.features.followUpQuestions')}</li>
+            <li>{t('pricing.features.searchHistory')}</li>
+            <li>{t('pricing.features.trendingPapers')}</li>
+            <li className="disabled">{t('pricing.features.centralizedBilling')}</li>
           </ul>
         </div>
 
         {/* Pro Plan */}
         <div className="plan-card">
-          <h3 className="plan-title">Pro</h3>
-          <p>For individual researchers</p>
-          <p className="plan-price">$12/month</p>
-          <button className="plan-button">Try it Free</button>
-          <p className="cancel-anytime">Cancel anytime</p>
+          <h3 className="plan-title">{t('pricing.pro.title')}</h3>
+          <p>{t('pricing.pro.description')}</p>
+          <p className="plan-price">{t('pricing.pro.price')}</p>
+          <button className="plan-button">{t('pricing.pro.button')}</button>
+          <p className="cancel-anytime">{t('pricing.cancelAnytime')}</p>
           <ul>
-            <li>Unlimited Searches</li>
-            <li>Follow-Up Questions</li>
-            <li>Search History</li>
-            <li>Trending Papers</li>
-            <li className="disabled">Centralized Billing</li>
+            <li>{t('pricing.features.unlimitedSearches')}</li>
+            <li>{t('pricing.features.followUpQuestions')}</li>
+            <li>{t('pricing.features.searchHistory')}</li>
+            <li>{t('pricing.features.trendingPapers')}</li>
+            <li className="disabled">{t('pricing.features.centralizedBilling')}</li>
           </ul>
         </div>
 
         {/* Team Plan */}
         <div className="plan-card">
-          <h3 className="plan-title">Team</h3>
-          <p>For universities & labs</p>
-          <p className="plan-price">Custom</p>
-          <button className="plan-button">Contact Us</button>
-          <p className="cancel-anytime">Cancel anytime</p>
+          <h3 className="plan-title">{t('pricing.team.title')}</h3>
+          <p>{t('pricing.team.description')}</p>
+          <p className="plan-price">{t('pricing.team.price')}</p>
+          <button className="plan-button">{t('pricing.team.button')}</button>
+          <p className="cancel-anytime">{t('pricing.cancelAnytime')}</p>
           <ul>
-            <li>Unlimited Searches</li>
-            <li>Follow-Up Questions</li>
-            <li>Search History</li>
-            <li>Trending Papers</li>
-            <li>Centralized Billing</li>
+            <li>{t('pricing.features.unlimitedSearches')}</li>
+            <li>{t('pricing.features.followUpQuestions')}</li>
+            <li>{t('pricing.features.searchHistory')}</li>
+            <li>{t('pricing.features.trendingPapers')}</li>
+            <li>{t('pricing.features.centralizedBilling')}</li>
           </ul>
         </div>
       </div>

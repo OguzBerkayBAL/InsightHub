@@ -1,0 +1,176 @@
+{
+    "nav": {
+        "assistant": "Assistant",
+        "trending": "Trending",
+        "newsletter": "Newsletter",
+        "pricing": "Pricing",
+        "login": "Log in",
+        "signup": "Sign up",
+        "logout": "Log Out",
+        "profile": "Profile"
+    },
+    "home": {
+        "title": "AI Research Assistant for Computer Scientists",
+        "searchPlaceholder": "Research any comp sci topic",
+        "topics": {
+            "dpoVsPpo": "DPO vs PPO",
+            "doubleDescent": "What is double descent?",
+            "ranking": "Listwise vs pairwise ranking",
+            "aiAgriculture": "How is AI used in agriculture?",
+            "backpropagation": "Implement Backpropagation in Python",
+            "attention": "什么是注意力?",
+            "attentionPaper": "Attention Is All You Need",
+            "kan": "KAN: Kolmogorov-Arnold Networks",
+            "summarize": "Summarize 2410.01201 in 3 bullet points",
+            "yannLecun": "Yann LeCun"
+        }
+    },
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "signupButton": "Sign up for free",
+        "whatIsInsightHub": {
+            "title": "What is Insight Hub",
+            "name": "Insight Hub",
+            "description": "is a new AI research assistant that helps answer questions about computer science research."
+        },
+        "differences": {
+            "title": "How is it different than ChatGPT?",
+            "point1": "We're hyper-focused on computer science research, ensuring answers are grounded in computer science and don't mix in research from other fields.",
+            "point2": "We factor in citations (via Semantic Scholar) and social metrics (from X, HackerNews, YouTube, and GitHub) to identify trending new papers that haven't been cited yet.",
+            "point3": "We provide references so you know what papers Insight Hub is using to answer your question.",
+            "point4": "We're always up-to-date with the latest papers on arXiv.",
+            "point5": "We encourage exploration using automatically-generated follow-up questions and embedded topic links."
+        },
+        "questionTypes": {
+            "title": "What type of questions can Insight Hub answer?",
+            "description": "For this beta version of Insight Hub, it uses a combination of abstracts and paper summaries to try to answer questions. For this reason, it excels at answering high-level questions like the examples above. We are working on getting full papers into the system to help answer more complex questions."
+        },
+        "suggestions": {
+            "title": "How can I make suggestions?",
+            "description": "We'd love any feedback you have, especially with respect to improving the quality of the answers.",
+            "contact": "Drop us a note anytime at"
+        },
+        "cost": {
+            "title": "How much does it cost?",
+            "description": "You can sign up for an account to perform 5 searches/day for free. To perform unlimited searches, you can upgrade to our Pro plan for just $12/month."
+        }
+    },
+    "newsletter": {
+        "title": "Newsletter",
+        "description": "Stay updated with the latest AI research and insights",
+        "emailPlaceholder": "Enter your email",
+        "frequency": "Frequency",
+        "subscribe": "Subscribe",
+        "daily": "Daily",
+        "weekly": "Weekly",
+        "monthly": "Monthly",
+        "loginRequired": "Please log in to subscribe to newsletter",
+        "loginButton": "Log In",
+        "signupButton": "Sign Up"
+    },
+    "pricing": {
+        "title": "Plans and Pricing",
+        "free": {
+            "title": "Free",
+            "description": "Try Insight Hub for free",
+            "price": "$0",
+            "button": "Try it Free"
+        },
+        "pro": {
+            "title": "Pro",
+            "description": "For individual researchers",
+            "price": "$12/month",
+            "button": "Try it Free"
+        },
+        "team": {
+            "title": "Team",
+            "description": "For universities & labs",
+            "price": "Custom",
+            "button": "Contact Us"
+        },
+        "noCard": "No credit card required",
+        "cancelAnytime": "Cancel anytime",
+        "features": {
+            "limitedSearches": "5 Searches/Day",
+            "unlimitedSearches": "Unlimited Searches",
+            "followUpQuestions": "Follow-Up Questions",
+            "searchHistory": "Search History",
+            "trendingPapers": "Trending Papers",
+            "centralizedBilling": "Centralized Billing"
+        }
+    },
+    "auth": {
+        "loginTitle": "Log In",
+        "signupTitle": "Sign Up",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "name": "Name",
+        "loginButton": "Log In",
+        "signupButton": "Sign Up",
+        "forgotPassword": "Forgot Password?",
+        "noAccount": "Don't have an account?",
+        "hasAccount": "Already have an account?"
+    },
+    "language": {
+        "select": "Language",
+        "english": "English",
+        "turkish": "Türkçe"
+    },
+    "comments": {
+        "title": "Our Insights",
+        "description": "Learn how to grow your business with our expert advice.",
+        "posts": {
+            "aiResearch": {
+                "title": "The Future of AI Research",
+                "description": "Exploring the latest breakthroughs in artificial intelligence and their potential impact on scientific research. From neural networks to machine learning algorithms, discover how AI is transforming the research landscape.",
+                "date": "Jan 15, 2024",
+                "category": "AI Research",
+                "author": {
+                    "name": "Dr. Sarah Johnson",
+                    "role": "AI Research Director"
+                }
+            },
+            "machinelearning": {
+                "title": "Machine Learning Best Practices",
+                "description": "A comprehensive guide to implementing machine learning solutions in real-world applications. Learn about data preprocessing, model selection, and deployment strategies that deliver results.",
+                "date": "Jan 10, 2024",
+                "category": "Machine Learning",
+                "author": {
+                    "name": "Prof. Alex Chen",
+                    "role": "ML Engineering Lead"
+                }
+            },
+            "dataanalysis": {
+                "title": "Advanced Data Analysis Techniques",
+                "description": "Dive deep into modern data analysis methodologies and tools. From statistical modeling to visualization techniques, master the art of extracting meaningful insights from complex datasets.",
+                "date": "Jan 5, 2024",
+                "category": "Data Science",
+                "author": {
+                    "name": "Dr. Emily Rodriguez",
+                    "role": "Data Science Manager"
+                }
+            }
+        }
+    },
+    "trending": {
+        "title": "Trending Computer Science Papers",
+        "headers": {
+            "author": "Author",
+            "title": "Title",
+            "published": "Published",
+            "views": "Views",
+            "comments": "Comments"
+        }
+    },
+    "common": {
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "close": "Close"
+    }
+}
