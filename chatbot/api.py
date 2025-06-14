@@ -8,6 +8,22 @@ import uvicorn
 import uuid
 from datetime import datetime
 import traceback
+import logging
+
+# Logging ayarları
+logging.basicConfig(
+    level=logging.WARNING,  # OpenAI HTTP loglarını gizle
+    format='%(message)s',   # Sadece mesajı göster
+    handlers=[
+        logging.StreamHandler(),  # Console'a yazdır
+    ]
+)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)  # Sadece bizim loglarımızı göster
+
+# OpenAI loglarını gizle
+logging.getLogger("openai").setLevel(logging.WARNING)
+logging.getLogger("httpx").setLevel(logging.WARNING)
 
 # API uygulamasını oluştur
 app = FastAPI(
@@ -78,6 +94,10 @@ def get_or_create_session(session_id: Optional[str] = None):
 @app.post("/query")
 async def query(query_data: Query):
     try:
+        print("\n" + "="*60)
+        print(f"📝 SORGU: {query_data.question}")
+        print("="*60)
+        
         # Oturumu al veya oluştur
         session = get_or_create_session(query_data.session_id)
         
@@ -90,6 +110,10 @@ async def query(query_data: Query):
         
         # Sorguyu işle
         result, detected_language = process_multilingual_query(query_data.question)
+        
+        print("="*60)
+        print("✅ ISLEM TAMAMLANDI!")
+        print("="*60 + "\n")
         
         # Cevabı hazırla
         response = {
@@ -179,4 +203,4 @@ async def health_check():
 
 # API'yi çalıştır
 if __name__ == "__main__":
-    uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True) 
+    uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=False) 

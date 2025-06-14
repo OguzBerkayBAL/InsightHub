@@ -48,12 +48,12 @@ def get_from_cache(text, target_lang):
     if USE_REDIS:
         cached_result = redis_client.get(cache_key)
         if cached_result:
-            print(f"Önbellekten çeviri kullanılıyor: {cache_key[:10]}...")
+            print("💾 Önbellekten çeviri alındı")
             return cached_result
     else:
         # Yerel önbellek kullan
         if cache_key in local_cache:
-            print(f"Yerel önbellekten çeviri kullanılıyor: {cache_key[:10]}...")
+            print("💾 Yerel önbellekten çeviri alındı")
             return local_cache[cache_key]
             
     return None
@@ -67,11 +67,11 @@ def save_to_cache(text, target_lang, translated_text, expire_time=86400): # 24 s
     
     if USE_REDIS:
         redis_client.set(cache_key, translated_text, ex=expire_time)
-        print(f"Çeviri önbelleğe kaydedildi: {cache_key[:10]}...")
+        print("💾 Çeviri önbelleğe kaydedildi")
     else:
         # Yerel önbellek kullan
         local_cache[cache_key] = translated_text
-        print(f"Çeviri yerel önbelleğe kaydedildi: {cache_key[:10]}...")
+        print("💾 Çeviri yerel önbelleğe kaydedildi")
 
 def detect_language(text):
     """Metinin dilini tespit eder"""
@@ -145,29 +145,29 @@ def process_multilingual_query(query):
     try:
         # 1. Kullanıcı sorgusunun dilini tespit et
         source_language = detect_language(query)
-        print(f"---DİL TESPİT EDİLDİ: {source_language}---")
+        print(f"🌍 Dil tespiti: {source_language}")
         
         # 2. Sorguyu İngilizce'ye çevir (eğer zaten İngilizce değilse)
         if source_language != "EN":
             english_query = translate_text(query, "EN")
-            print(f"---ÇEVİRİLEN SORGU: {english_query}---")
+            print(f"🔄 Çeviri: {english_query}")
         else:
             english_query = query
-            print("---SORGU ZATEN İNGİLİZCE, ÇEVİRİ YAPILMADI---")
+            print("🔄 Çeviri: Gerekli değil (zaten İngilizce)")
         
         # 3. Sorguya göre makaleleri çek ve vektör veritabanını güncelle
         try:
-            print("---MAKALELER ÇEKİLİYOR---")
+            print("📚 Makale arama başlatılıyor...")
             documents = fetch_and_process_papers(english_query)
             
             # Eğer belge listesi boşsa, mevcut veritabanını kullan
             if not documents or len(documents) == 0:
-                print("---MAKALE BULUNAMADI, MEVCUT VERİTABANI KULLANILIYOR---")
+                print("📚 Yeni makale bulunamadı, mevcut veritabanı kullanılıyor")
                 from ingestion import retriever  # Önceden yaratılmış retriever'ı kullan
             else:
                 # Yeni makaleler bulunduysa veritabanını güncelle
                 retriever = update_vectorstore(documents)
-                print(f"---VEKTÖR VERİTABANI {len(documents)} BELGE İLE GÜNCELLENDİ---")
+                print(f"📚 Veritabanı güncellendi: {len(documents)} yeni belge eklendi")
         except Exception as e:
             print(f"Makale çekme veya veritabanı güncelleme hatası: {str(e)}")
             print(f"Hata detayı: {traceback.format_exc()}")
@@ -176,14 +176,13 @@ def process_multilingual_query(query):
         
         # 4. RAG sistemini kullanarak cevap al
         try:
-            print("---RAG SİSTEMİ ÇAĞRILIYOR---")
+            print("🤖 RAG sistemi çalışıyor...")
             result = app.invoke(input={"question": english_query})
-            print("---RAG SİSTEMİ CEVAP VERDİ---")
             
             # İşlem sonrası belge sayısını ve türünü loglayalım
             if isinstance(result, dict) and "documents" in result:
                 doc_count = len(result["documents"]) if result["documents"] else 0
-                print(f"---DÖNEN BELGE SAYISI: {doc_count}---")
+                print(f"🤖 Cevap hazırlandı ({doc_count} belge kullanıldı)")
                 
                 # Makale linklerini cevaba ekle
                 for doc in result["documents"]:
@@ -205,7 +204,7 @@ def process_multilingual_query(query):
         
         # 5. Cevabı ve belgeleri kaynak dile geri çevir
         if source_language != "EN":
-            print(f"---CEVAP VE BELGELER KAYNAK DİLE ÇEVRİLİYOR: {source_language}---")
+            print(f"🔄 Cevap {source_language} diline çevriliyor...")
             
             # Generation alanını çevir
             if isinstance(result, dict) and "generation" in result:
@@ -231,7 +230,7 @@ def process_multilingual_query(query):
                             except Exception as e:
                                 print(f"Belge çeviri hatası: {str(e)}")
                     
-        print(f"---İŞLEM TAMAMLANDI, KAYNAK DİL: {source_language}---")
+        # İşlem tamamlandı mesajı API'da gösterilecek
         return result, source_language
     except Exception as e:
         print(f"Genel hata: {str(e)}")
